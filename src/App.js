@@ -5,6 +5,7 @@ import "./App.css";
 class App extends Component {
 	constructor (props) {
 		super(props);
+
 		this.state = {
 			pay_rate   : 0,
 			multiplier : 1,
@@ -49,18 +50,15 @@ class App extends Component {
 	setPayRate = (event) => {
 		this.setState({ pay_rate: event.target.value });
 		localStorage.setItem("pay_rate", event.target.value);
-		//console.log("Pay Rate:", this.state.pay_rate);
 	};
 
 	setMultiplier = (event) => {
 		this.setState({ multiplier: event.target.value });
 		localStorage.setItem("multiplier", event.target.value);
-		//console.log("Multiplier:", this.state.multiplier);
 	};
 
 	setStartTime = (event) => {
 		this.setState({ start_time: event.target.value });
-		//console.log("Start Time:", this.state.start_time);
 	};
 
 	setStartBreak = (event) => {
@@ -70,7 +68,6 @@ class App extends Component {
 			end_break   : breaks[0].end_break
 		};
 		this.setState({ breaks: breaks });
-		//console.log("Breaks:", this.state.breaks);
 	};
 
 	setEndBreak = (event) => {
@@ -80,12 +77,10 @@ class App extends Component {
 			end_break   : event.target.value
 		};
 		this.setState({ breaks: breaks });
-		//console.log("Breaks:", this.state.breaks);
 	};
 
 	setEndTime = (event) => {
 		this.setState({ end_time: event.target.value });
-		//console.log("End Time:", this.state.end_time);
 	};
 
 	render () {
@@ -93,14 +88,14 @@ class App extends Component {
 			<div className="body">
 				<Header />				
 				<Settings setPayRate={this.setPayRate} setMultiplier={this.setMultiplier} />				
-				<button className="resetBtn" onClick={this.clearSettings}>Clear Settings</button>
+				<button onClick={this.clearSettings}>Clear Settings</button>
 				<ShiftTimes
 					setStartTime={this.setStartTime}
 					setStartBreak={this.setStartBreak}
 					setEndBreak={this.setEndBreak}
 					setEndTime={this.setEndTime}
 				/>
-				<button className="resetBtn" onClick={this.resetState}>Reset Times</button>
+				<button onClick={this.resetState}>Reset Times</button>
 				<Results results={this.state} />
 				<Footer />
 			</div>

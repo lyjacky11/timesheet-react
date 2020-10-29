@@ -16,7 +16,7 @@ input {
     background-color: #FAFAFA;
 }
 
-.resetBtn {
+button {
     border: none;
     cursor: pointer;
     border-radius: 10px;
@@ -27,7 +27,7 @@ input {
     transition: transform 150ms ease-in-out;
 }
 
-.resetBtn:hover {
+button:hover {
     transform: scale(1.05);
 }
 
