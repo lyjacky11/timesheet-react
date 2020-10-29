@@ -1,0 +1,12 @@
+.addeventatc {
+	border: solid 2px !important;
+	border-color: #56A5E1 !important;
+}
+
+.addeventatc_dropdown {
+	padding: 6px 0px !important;
+}
+
+.addeventatc_dropdown .copyx {
+	display: none !important;
+}
