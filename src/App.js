@@ -7,7 +7,6 @@ import "./App.css";
 class App extends Component {
 	constructor (props) {
 		super(props);
-
 		this.state = {
 			pay_rate   : 0,
 			multiplier : 1,
@@ -28,6 +27,7 @@ class App extends Component {
 		const payRateInput = document.getElementById("pay_rate");
 		const savedMultiplier = localStorage.getItem("multiplier");
 		const multiplierInput = document.getElementById("multiplier");
+		const savedTheme = localStorage.getItem("theme");
 
 		if (savedPayRate !== null) {
 			payRateInput.value = savedPayRate;
@@ -36,6 +36,9 @@ class App extends Component {
 		if (savedMultiplier !== null) {
 			multiplierInput.value = savedMultiplier;
 			this.setState({multiplier: savedMultiplier});
+		}
+		if (savedTheme === "light") {
+			this.toggleTheme();
 		}
 	}
 
@@ -85,7 +88,7 @@ class App extends Component {
 		this.setState({ end_time: event.target.value });
 	};
 
-	toggleTheme() {
+	toggleTheme = () => {
 		const body = document.querySelector("body");
 		const header = document.querySelector(".header");
 		const settings = document.querySelector(".settings");
@@ -107,6 +110,13 @@ class App extends Component {
 		results.classList.toggle("flexItem-light");
 		themeBtn.classList.toggle("light");
 		footer.classList.toggle("flexItem-light");
+
+		if (body.classList.contains("light")) {
+			localStorage.setItem("theme", "light");
+		}
+		else {
+			localStorage.removeItem("theme");
+		}
 	}
 
 	render () {
@@ -123,7 +133,7 @@ class App extends Component {
 				/>
 				<button className="resetBtn" onClick={this.resetState}>Reset Times</button>
 				<Results results={this.state} />
-				<FontAwesomeIcon className={`themeBtn`} onClick={this.toggleTheme} icon={faAdjust} size="2x" />
+				<FontAwesomeIcon className="themeBtn" onClick={this.toggleTheme} icon={faAdjust} size="2x" />
 				<Footer />
 			</div>
 		);

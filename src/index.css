@@ -16,12 +16,12 @@ code {
 }
 
 .light {
-	background-color:#FFFFFF !important;
+	background-color:rgb(230, 230, 230) !important;
     color: black !important;
 }
 
 .flexItem-light {
-	background-color: rgb(221, 221, 221) !important;
+	background-color: #FAFAFA !important;
 	color: black !important;
 }
 
