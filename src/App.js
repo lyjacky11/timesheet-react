@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Header, Settings, ShiftTimes, Results, Footer } from "./components";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAdjust } from '@fortawesome/free-solid-svg-icons';
 import "./App.css";
 
 class App extends Component {
@@ -83,20 +85,45 @@ class App extends Component {
 		this.setState({ end_time: event.target.value });
 	};
 
+	toggleTheme() {
+		const body = document.querySelector("body");
+		const header = document.querySelector(".header");
+		const settings = document.querySelector(".settings");
+		const clearBtn = document.querySelector(".clearBtn");
+		const shiftTimes = document.querySelector(".shiftTimes");
+		const breaks = document.querySelector(".breaks");
+		const resetBtn = document.querySelector(".resetBtn");
+		const results = document.querySelector(".results");
+		const themeBtn = document.querySelector(".themeBtn");
+		const footer = document.querySelector(".footer");
+
+		body.classList.toggle("light");
+		header.classList.toggle("flexItem-light");
+		settings.classList.toggle("flexItem-light");
+		clearBtn.classList.toggle("button-light");
+		shiftTimes.classList.toggle("flexItem-light");
+		breaks.classList.toggle("flexItem-light");
+		resetBtn.classList.toggle("button-light");
+		results.classList.toggle("flexItem-light");
+		themeBtn.classList.toggle("light");
+		footer.classList.toggle("flexItem-light");
+	}
+
 	render () {
 		return (
 			<div className="body">
 				<Header />				
 				<Settings setPayRate={this.setPayRate} setMultiplier={this.setMultiplier} />				
-				<button onClick={this.clearSettings}>Clear Settings</button>
+				<button className="clearBtn" onClick={this.clearSettings}>Clear Settings</button>
 				<ShiftTimes
 					setStartTime={this.setStartTime}
 					setStartBreak={this.setStartBreak}
 					setEndBreak={this.setEndBreak}
 					setEndTime={this.setEndTime}
 				/>
-				<button onClick={this.resetState}>Reset Times</button>
+				<button className="resetBtn" onClick={this.resetState}>Reset Times</button>
 				<Results results={this.state} />
+				<FontAwesomeIcon className={`themeBtn`} onClick={this.toggleTheme} icon={faAdjust} size="2x" />
 				<Footer />
 			</div>
 		);

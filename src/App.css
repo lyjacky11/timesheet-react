@@ -1,7 +1,7 @@
 a {
     font-weight: bold;
     text-decoration: none;
-    color: lightblue;
+    color: dodgerblue;
 }
 
 a:hover {
@@ -27,7 +27,13 @@ button {
     transition: transform 150ms ease-in-out;
 }
 
-button:hover {
+.themeBtn {
+    cursor: pointer;
+    color: white;
+    transition: transform 150ms ease-in-out;
+}
+
+button:hover, .themeBtn:hover {
     transform: scale(1.05);
 }
 

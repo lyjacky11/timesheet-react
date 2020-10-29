@@ -14,3 +14,18 @@ body {
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.light {
+	background-color:#FFFFFF !important;
+    color: black !important;
+}
+
+.flexItem-light {
+	background-color: rgb(221, 221, 221) !important;
+	color: black !important;
+}
+
+.button-light {
+	background-color: #232323 !important;
+	color: white !important;
+}
