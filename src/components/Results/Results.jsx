@@ -15,6 +15,7 @@ class Results extends Component {
         var startTime = calButton.querySelector(".start");
         var endTime = calButton.querySelector(".end");
         var timeZone = calButton.querySelector(".timezone");
+        var location = calButton.querySelector(".location");
         var reminder = calButton.querySelector(".alarm_reminder");
         
         // Initialize variables
@@ -29,24 +30,38 @@ class Results extends Component {
         // Breaks
         if (start_break !== "" && end_break !== "") {
             total_breaks = "\n<b>" + document.querySelector("#total_breaks").innerHTML + "</b>";
-            breaks[0] = "<em>On Break: " + start_break + "</em>\n";
-            breaks[1] = "<em>Off Break: " + end_break + "</em>\n";
+            breaks[0] = "<em>On Break: " + this.convertTime(start_break) + "</em>\n";
+            breaks[1] = "<em>Off Break: " + this.convertTime(end_break) + "</em>\n";
             breaksString += breaks[0];
             breaksString += breaks[1];
         }
         
         // Set strings
         var hours_worked = "<b>" + document.querySelector("#hours_worked").innerHTML + "</b>";
-        var time_in = "<em>Time In: " + start_shift + "</em>";
-        var time_out = "<em>Time Out: " + end_shift + "</em>";
+        var time_in = "<em>Time In: " + this.convertTime(start_shift) + "</em>";
+        var time_out = "<em>Time Out: " + this.convertTime(end_shift) + "</em>";
         
         // Set event information
-        eventTitle.innerText = "Event Name";
+        eventTitle.innerText = "";
         description.innerText = hours_worked + total_breaks + "<br>Shift Paid? N/A<br/><br/>" + time_in + "<br/>" + breaksString + time_out;
         startTime.innerText = start_shift;
         endTime.innerText = end_shift;
         timeZone.innerText = "America/Toronto";
-        reminder.innerText = "0";
+        location.innerText = "";
+        reminder.innerText = "";
+    }
+
+    convertTime(time24) {
+        var ts = "";
+        if (time24 !== "" || time24 !== null) {
+            ts = time24;
+            var H = +ts.substr(0, 2);
+            var h = (H % 12) || 12;
+            //h = (h < 10)?("0"+h):h;  // leading 0 at the left for 1 digit hours
+            var ampm = H < 12 ? " am" : " pm";
+            ts = h + ts.substr(2, 3) + ampm;
+        }
+        return ts;
     }
     
     calculateHours(results) {
@@ -139,6 +154,7 @@ class Results extends Component {
                     <span className="start"></span>
                     <span className="end"></span>
                     <span className="timezone"></span>
+                    <span className="location"></span>
                     <span className="alarm_reminder"></span>
                 </div>
                 <br /><br />
